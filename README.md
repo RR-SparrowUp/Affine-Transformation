@@ -8,7 +8,7 @@ This repository contains code for analyzing and visualizing affine transformatio
 
 An **affine transformation** maps points from one coordinate system to another using a combination of linear transformations (such as rotation, scaling, and shear) and translation. In this analysis, the affine transformation is estimated to map keypoints from frame **P** to frame **Q**.
 
-Given a set of corresponding points \( \mathbf{P} = \{\mathbf{p}_1, \mathbf{p}_2, \dots, \mathbf{p}_n\} \) in frame **P** and \( \mathbf{Q} = \{\mathbf{q}_1, \mathbf{q}_2, \dots, \mathbf{q}_n\} \) in frame **Q**, the affine transformation matrix \( \mathbf{M} \) is a \( 2 \times 3 \) matrix that satisfies:
+Given a set of corresponding points $$\( \mathbf{P} = \{\mathbf{p}_1, \mathbf{p}_2, \dots, \mathbf{p}_n\} \)$$ in frame **P** and $$\( \mathbf{Q} = \{\mathbf{q}_1, \mathbf{q}_2, \dots, \mathbf{q}_n\} \)$$ in frame **Q**, the affine transformation matrix $$\( \mathbf{M} \) is a \( 2 \times 3 \)$$ matrix that satisfies:
 
 $$
 \mathbf{q}_i = \mathbf{M} \cdot \mathbf{p}_i \quad \forall i = 1, 2, \dots, n
