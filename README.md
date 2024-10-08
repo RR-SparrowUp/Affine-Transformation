@@ -10,9 +10,7 @@ An **affine transformation** maps points from one coordinate system to another u
 
 Given a set of corresponding points $$\( \mathbf{P} = \{\mathbf{p}_1, \mathbf{p}_2, \dots, \mathbf{p}_n\} \)$$ in frame **P** and $$\( \mathbf{Q} = \{\mathbf{q}_1, \mathbf{q}_2, \dots, \mathbf{q}_n\} \)$$ in frame **Q**, the affine transformation matrix $$\( \mathbf{M} \)$$ is a $$\( 2 \times 3 \)$$ matrix that satisfies:
 
-$$
-\mathbf{q}_i = \mathbf{M} \cdot \mathbf{p}_i \quad \forall i = 1, 2, \dots, n
-$$
+$$\mathbf{q}_i = \mathbf{M} \cdot \mathbf{p}_i \quad \forall i = 1, 2, \dots, n$$
 
 Where:
 - $$\( \mathbf{p}_i = \begin{bmatrix} x_i^{(P)} \\ y_i^{(P)} \end{bmatrix} \)$$ is a point in frame **P**.
