@@ -16,7 +16,9 @@ $$
 
 Where:
 - $$\( \mathbf{p}_i = \begin{bmatrix} x_i^{(P)} \\ y_i^{(P)} \end{bmatrix} \)$$ is a point in frame **P**.
+  
 - $$\( \mathbf{q}_i = \begin{bmatrix} x_i^{(Q)} \\ y_i^{(Q)} \end{bmatrix} \)$$ is the corresponding point in frame **Q**.
+  
 - $$\( \mathbf{M} = \begin{bmatrix} m_{11} & m_{12} & t_x \\ m_{21} & m_{22} & t_y \end{bmatrix} \)$$ is the affine transformation matrix comprising rotation, scaling, and translation components.
 
 ### 2. Estimation of the Affine Transformation Matrix
@@ -31,7 +33,7 @@ This optimization problem is solved using OpenCV's `estimateAffinePartial2D` fun
 
 ### 3. Decomposition of the Affine Transformation Matrix
 
-Once the affine matrix \( \mathbf{M} \) is obtained, it can be decomposed into **rotation**, **scaling**, and **translation** components.
+Once the affine matrix $$\( \mathbf{M} \)$$ is obtained, it can be decomposed into **rotation**, **scaling**, and **translation** components.
 
 #### a. Affine Matrix Structure
 
@@ -40,8 +42,9 @@ $$
 $$
 
 Where:
-- \( \mathbf{A} = \begin{bmatrix} m_{11} & m_{12} \\ m_{21} & m_{22} \end{bmatrix} \) is the linear transformation matrix.
-- \( \mathbf{t} = \begin{bmatrix} t_x \\ t_y \end{bmatrix} \) is the translation vector.
+- $$\( \mathbf{A} = \begin{bmatrix} m_{11} & m_{12} \\ m_{21} & m_{22} \end{bmatrix} \)$$ is the linear transformation matrix.
+  
+- $$\( \mathbf{t} = \begin{bmatrix} t_x \\ t_y \end{bmatrix} \)$$ is the translation vector.
 
 #### b. Singular Value Decomposition (SVD)
 
@@ -52,18 +55,18 @@ $$
 $$
 
 Where:
-- \( \mathbf{U} \) and \( \mathbf{V} \) are orthogonal matrices.
-- \( \mathbf{\Sigma} = \begin{bmatrix} \sigma_1 & 0 \\ 0 & \sigma_2 \end{bmatrix} \) contains the singular values representing scaling factors.
+- $$\( \mathbf{U} \) and \( \mathbf{V} \)$$ are orthogonal matrices.
+- $$\( \mathbf{\Sigma} = \begin{bmatrix} \sigma_1 & 0 \\ 0 & \sigma_2 \end{bmatrix} \)$$ contains the singular values representing scaling factors.
 
 #### c. Rotation Matrix
 
-The rotation matrix \( \mathbf{R} \) is obtained by:
+The rotation matrix $$\( \mathbf{R} \)$$ is obtained by:
 
 $$
 \mathbf{R} = \mathbf{U} \mathbf{V}^T
 $$
 
-To ensure a proper rotation (i.e., \( \det(\mathbf{R}) = 1 \)), adjust \( \mathbf{U} \) or \( \mathbf{V} \) if necessary.
+To ensure a proper rotation (i.e., $$\( \det(\mathbf{R}) = 1 \))$$, adjust $$\( \mathbf{U} \)$$ or $$\( \mathbf{V} \)$$ if necessary.
 
 #### d. Scaling Factors
 
@@ -75,7 +78,7 @@ $$
 
 #### e. Translation Vector
 
-The translation component \( \mathbf{t} \) is directly taken from the affine matrix:
+The translation component $$\( \mathbf{t} \)$$ is directly taken from the affine matrix:
 
 $$
 \mathbf{t} = \begin{bmatrix} t_x \\ t_y \end{bmatrix}
@@ -83,14 +86,14 @@ $$
 
 ### 4. Rotation Angle Calculation
 
-The rotation angle \( \theta \) extracted from the rotation matrix \( \mathbf{R} \) can be computed as:
+The rotation angle $$\( \theta \)$$ extracted from the rotation matrix $$\( \mathbf{R} \)$$ can be computed as:
 
 $$
 \theta = \arctan\left(\frac{r_{21}}{r_{11}}\right) = \arctan\left(\frac{m_{21}}{m_{11}}\right)
 $$
 
 Where:
-- \( r_{11} \) and \( r_{21} \) are elements of the rotation matrix \( \mathbf{R} \).
+- $$\( r_{11} \) and \( r_{21} \)$$ are elements of the rotation matrix $$\( \mathbf{R} \)$$.
 
 To convert the angle from radians to degrees:
 
@@ -100,17 +103,17 @@ $$
 
 ### 5. Applying the Affine Transformation
 
-To transform a set of points \( \mathbf{P} \) using the affine matrix \( \mathbf{M} \), use homogeneous coordinates:
+To transform a set of points $$\( \mathbf{P} \)$$ using the affine matrix $$\( \mathbf{M} \)$$, use homogeneous coordinates:
 
 $$
 \mathbf{p}_i' = \mathbf{M} \cdot \begin{bmatrix} x_i^{(P)} \\ y_i^{(P)} \\ 1 \end{bmatrix} = \begin{bmatrix} m_{11}x_i^{(P)} + m_{12}y_i^{(P)} + t_x \\ m_{21}x_i^{(P)} + m_{22}y_i^{(P)} + t_y \end{bmatrix}
 $$
 
-Where \( \mathbf{p}_i' \) is the transformed point in frame **Q**.
+Where $$\( \mathbf{p}_i' \)$$ is the transformed point in frame **Q**.
 
 ### 6. Residuals and Mean Squared Error (MSE)
 
-After applying the affine transformation, compute the residuals between the transformed points \( \mathbf{P}' \) and the target points \( \mathbf{Q} \):
+After applying the affine transformation, compute the residuals between the transformed points $$\( \mathbf{P}' \)$$ and the target points $$\( \mathbf{Q} \)$$:
 
 $$
 \text{Residual}_i = \mathbf{q}_i - \mathbf{p}_i'
@@ -123,9 +126,9 @@ $$
 $$
 
 Where:
-- \( n \) is the number of corresponding keypoints.
-- \( (x_i^{(Q)}, y_i^{(Q)}) \) are the coordinates of the target point in frame **Q**.
-- \( (x_i', y_i') \) are the coordinates of the transformed point from frame **P**.
+- $$\( n \)$$ is the number of corresponding keypoints.
+- $$\( (x_i^{(Q)}, y_i^{(Q)}) \)$$ are the coordinates of the target point in frame **Q**.
+- $$\( (x_i', y_i') \)$$ are the coordinates of the transformed point from frame **P**.
 
 ### 7. Summary of Variables in the Code
 
@@ -133,14 +136,14 @@ To correlate the mathematical formulas with your code:
 
 | **Mathematical Symbol** | **Code Variable**          | **Description**                                     |
 |-------------------------|----------------------------|-----------------------------------------------------|
-| \( \mathbf{P} \)        | `pts_P`                    | NumPy array of points from frame P                  |
-| \( \mathbf{Q} \)        | `pts_Q`                    | NumPy array of points from frame Q                  |
-| \( \mathbf{M} \)        | `affine_matrix`            | Estimated affine transformation matrix              |
-| \( \mathbf{R} \)        | `R`                        | Rotation matrix                                     |
-| \( \mathbf{t} \)        | `t`                        | Translation vector                                  |
-| \( \mathbf{S} \)        | `scales`                   | Scaling factors                                     |
-| \( \text{Residual}_i \)| `residuals`                | Residuals between transformed and target points     |
-| \( \text{MSE} \)        | `mse`                      | Mean Squared Error of the transformation            |
+| $$\( \mathbf{P} \)$$        | `pts_P`                    | NumPy array of points from frame P                  |
+| $$\( \mathbf{Q} \)$$        | `pts_Q`                    | NumPy array of points from frame Q                  |
+| $$\( \mathbf{M} \)$$       | `affine_matrix`            | Estimated affine transformation matrix              |
+| $$\( \mathbf{R} \)$$       | `R`                        | Rotation matrix                                     |
+| $$\( \mathbf{t} \)$$        | `t`                        | Translation vector                                  |
+| $$\( \mathbf{S} \)$$        | `scales`                   | Scaling factors                                     |
+| $$\( \text{Residual}_i \)$$| `residuals`                | Residuals between transformed and target points     |
+| $$\( \text{MSE} \)$$        | `mse`                      | Mean Squared Error of the transformation            |
 
 ---
 
