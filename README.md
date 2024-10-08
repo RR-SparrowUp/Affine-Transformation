@@ -119,7 +119,7 @@ $$
 
 The **Mean Squared Error (MSE)** is then calculated as:
 
-$$\MSE = \frac{1}{n} \sum_{i=1}^{n} \left\| \text{Residual}_i \right\|^2 = \frac{1}{n} \sum_{i=1}^{n} \left( (x_i^{(Q)} - x_i')^2 +(y_i^{(Q)} - y_i')^2 \right)$$
+$$\( MSE = \frac{1}{n} \sum_{i=1}^{n} \left\| \text{Residual}_i \right\|^2 = \frac{1}{n} \sum_{i=1}^{n} \left( (x_i^{(Q)} - x_i')^2 +(y_i^{(Q)} - y_i')^2 \right \)$$
 
 Where:
 - $$\( n \)$$ is the number of corresponding keypoints.
