@@ -1,6 +1,6 @@
 # Affine Transformation Analysis of Biped 2D Keypoints
 
-This repository contains code for analyzing and visualizing affine transformations between 2D keypoints of a biped model. The mathematical foundation provided below outlines the key concepts and computations implemented in the code.
+This repository contains code for analyzing and visualizing affine transformations between 2D keypoints of a biped model. The following mathematical overview outlines the key concepts and computations implemented in the code.
 
 ## Mathematical Overview
 
@@ -131,18 +131,17 @@ Where:
 
 To correlate the mathematical formulas with your code:
 
-| **Mathematical Symbol** | **Code Variable**          | **Description**                          |
-|-------------------------|----------------------------|------------------------------------------|
-| \( \mathbf{P} \)        | `pts_P`                    | NumPy array of points from frame P       |
-| \( \mathbf{Q} \)        | `pts_Q`                    | NumPy array of points from frame Q       |
-| \( \mathbf{M} \)        | `affine_matrix`            | Estimated affine transformation matrix   |
-| \( \mathbf{R} \)        | `R`                        | Rotation matrix                          |
-| \( \mathbf{t} \)        | `t`                        | Translation vector                       |
-| \( \mathbf{S} \)        | `scales`                   | Scaling factors                          |
-| \( \text{Residual}_i \)| `residuals`                | Residuals between transformed and target points |
-| \( \text{MSE} \)        | `mse`                      | Mean Squared Error of the transformation |
+| **Mathematical Symbol** | **Code Variable**          | **Description**                                     |
+|-------------------------|----------------------------|-----------------------------------------------------|
+| \( \mathbf{P} \)        | `pts_P`                    | NumPy array of points from frame P                  |
+| \( \mathbf{Q} \)        | `pts_Q`                    | NumPy array of points from frame Q                  |
+| \( \mathbf{M} \)        | `affine_matrix`            | Estimated affine transformation matrix              |
+| \( \mathbf{R} \)        | `R`                        | Rotation matrix                                     |
+| \( \mathbf{t} \)        | `t`                        | Translation vector                                  |
+| \( \mathbf{S} \)        | `scales`                   | Scaling factors                                     |
+| \( \text{Residual}_i \)| `residuals`                | Residuals between transformed and target points     |
+| \( \text{MSE} \)        | `mse`                      | Mean Squared Error of the transformation            |
 
 ---
 
 By understanding these mathematical concepts, you can gain deeper insights into how the affine transformation is estimated, decomposed, and applied to the 2D keypoints of the biped model. This foundation is crucial for interpreting the results and ensuring the accuracy of the transformation.
-
