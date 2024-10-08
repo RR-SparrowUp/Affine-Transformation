@@ -8,26 +8,26 @@ This repository contains code for analyzing and visualizing affine transformatio
 
 An **affine transformation** maps points from one coordinate system to another using a combination of linear transformations (such as rotation, scaling, and shear) and translation. In this analysis, the affine transformation is estimated to map keypoints from frame **P** to frame **Q**.
 
-Given a set of corresponding points $$\( \mathbf{P} = \{\mathbf{p}_1, \mathbf{p}_2, \dots, \mathbf{p}_n\} \)$$ in frame **P** and $$\( \mathbf{Q} = \{\mathbf{q}_1, \mathbf{q}_2, \dots, \mathbf{q}_n\} \)$$ in frame **Q**, the affine transformation matrix $$\( \mathbf{M} \) is a \( 2 \times 3 \)$$ matrix that satisfies:
+Given a set of corresponding points $$\( \mathbf{P} = \{\mathbf{p}_1, \mathbf{p}_2, \dots, \mathbf{p}_n\} \)$$ in frame **P** and $$\( \mathbf{Q} = \{\mathbf{q}_1, \mathbf{q}_2, \dots, \mathbf{q}_n\} \)$$ in frame **Q**, the affine transformation matrix $$\( \mathbf{M} \)$$ is a $$\( 2 \times 3 \)$$ matrix that satisfies:
 
 $$
 \mathbf{q}_i = \mathbf{M} \cdot \mathbf{p}_i \quad \forall i = 1, 2, \dots, n
 $$
 
 Where:
-- \( \mathbf{p}_i = \begin{bmatrix} x_i^{(P)} \\ y_i^{(P)} \end{bmatrix} \) is a point in frame **P**.
-- \( \mathbf{q}_i = \begin{bmatrix} x_i^{(Q)} \\ y_i^{(Q)} \end{bmatrix} \) is the corresponding point in frame **Q**.
-- \( \mathbf{M} = \begin{bmatrix} m_{11} & m_{12} & t_x \\ m_{21} & m_{22} & t_y \end{bmatrix} \) is the affine transformation matrix comprising rotation, scaling, and translation components.
+- $$\( \mathbf{p}_i = \begin{bmatrix} x_i^{(P)} \\ y_i^{(P)} \end{bmatrix} \)$$ is a point in frame **P**.
+- $$\( \mathbf{q}_i = \begin{bmatrix} x_i^{(Q)} \\ y_i^{(Q)} \end{bmatrix} \)$$ is the corresponding point in frame **Q**.
+- $$\( \mathbf{M} = \begin{bmatrix} m_{11} & m_{12} & t_x \\ m_{21} & m_{22} & t_y \end{bmatrix} \)$$ is the affine transformation matrix comprising rotation, scaling, and translation components.
 
 ### 2. Estimation of the Affine Transformation Matrix
 
-The affine transformation matrix \( \mathbf{M} \) is estimated using the **Least Squares** method, which minimizes the sum of squared residuals between the transformed points and the target points.
+The affine transformation matrix $$\( \mathbf{M} \)$$ is estimated using the **Least Squares** method, which minimizes the sum of squared residuals between the transformed points and the target points.
 
 $$
 \mathbf{M} = \underset{\mathbf{M}}{\arg\min} \sum_{i=1}^{n} \left\| \mathbf{q}_i - \mathbf{M} \cdot \mathbf{p}_i \right\|^2
 $$
 
-This optimization problem is solved using OpenCV's `estimateAffinePartial2D` function, which computes \( \mathbf{M} \) that best aligns \( \mathbf{P} \) to \( \mathbf{Q} \).
+This optimization problem is solved using OpenCV's `estimateAffinePartial2D` function, which computes $$\( \mathbf{M} \)$$ that best aligns $$\( \mathbf{P} \)$$ to $$\( \mathbf{Q} \)$$.
 
 ### 3. Decomposition of the Affine Transformation Matrix
 
